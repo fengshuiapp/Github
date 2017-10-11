@@ -1,59 +1,66 @@
 class SecondViewController < UIViewController
-  INVALID_LABEL_WIDTH   = 260
-  INVALID_LABEL_HEIGHT  = 40
-  INVALID_LABEL_POS_X   = (UIScreen.mainScreen.bounds.size.width - INVALID_LABEL_WIDTH) / 2
-  INVALID_LABEL_POS_Y   = (UIScreen.mainScreen.bounds.size.height - INVALID_LABEL_HEIGHT) / 2
 
-  FIRE_BUTTON_MARGIN = 5
-  FIRE_BUTTON_WIDTH = 320
-  FIRE_BUTTON_HEIGHT = 44
-  FIRE_BUTTON_POS_X   = 0
-  FIRE_BUTTON_POS_Y   = UIScreen.mainScreen.bounds.size.height - FIRE_BUTTON_HEIGHT - FIRE_BUTTON_MARGIN
 
-  def viewDidLoad
-    self.view.backgroundColor = UIColor.blackColor
-  end
-
-  def viewDidAppear(animated)
-    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceTypeCamera)
-      @ipc = UIImagePickerController.alloc.init
-      @ipc.delegate = self
-      @ipc.sourceType = UIImagePickerControllerSourceTypeCamera
-      @ipc.allowsEditing = false
-      @ipc.showsCameraControls = false
-      @ipc.view.addSubview(fire_button)
-      self.presentModalViewController(@ipc, animated: true)
-    else
-      make_invalid_screen
+    def viewDidLoad
+      view.backgroundColor = UIColor.underPageBackgroundColor
+      loadButtons
     end
-  end
 
-  def make_invalid_screen
-    invalid_label = UILabel.new.tap do |label|
-      label.text = 'The device can not use camera'
-      label.textColor = UIColor.whiteColor
-      label.backgroundColor = UIColor.blackColor
-      label.frame = [[INVALID_LABEL_POS_X, INVALID_LABEL_POS_Y],
-                     [INVALID_LABEL_WIDTH, INVALID_LABEL_HEIGHT]]
+    def loadButtons
+      @camera_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+      @camera_button.frame  = [[50, 200], [200, 50]]
+      @camera_button.setTitle("Click from camera", forState:UIControlStateNormal)
+      @camera_button.addTarget(self, action: :start_camera, forControlEvents:UIControlEventTouchUpInside)
+      view.addSubview(@camera_button)
+
+      @gallery_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+      @gallery_button.frame  = [[50, 100], [200, 50]]
+      @gallery_button.setTitle("Chose from Gallery", forState:UIControlStateNormal)
+      @gallery_button.addTarget(self, action: :open_gallery, forControlEvents:UIControlEventTouchUpInside)
+      view.addSubview(@gallery_button)
+
+      @image_picker = UIImagePickerController.alloc.init
+      @image_picker.delegate = self
     end
-    self.view.addSubview(invalid_label)
-  end
 
-  def fire_button
-    button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    button.setTitle("Take picture", forState: UIControlStateNormal)
-    button.frame = [[FIRE_BUTTON_POS_X, FIRE_BUTTON_POS_Y],
-                    [FIRE_BUTTON_WIDTH, FIRE_BUTTON_HEIGHT]]
-    button.addTarget(self, action:'take_picture', forControlEvents:UIControlEventTouchUpInside)
-  end
+    #Tells the delegate that the user picked a still image or movie.
+    def imagePickerController(picker, didFinishPickingImage:image, editingInfo:info)
+      self.dismissModalViewControllerAnimated(true)
+      @image_view.removeFromSuperview if @image_view
+      @image_view = UIImageView.alloc.initWithImage(image)
+      @image_view.frame = [[50, 200], [200, 180]]
+      view.addSubview(@image_view)
+    end
 
-  def take_picture
-    @ipc.takePicture
-  end
+    def start_camera
+      if camera_present
+        #@ipc = UIImagePickerController.alloc.init
+        #@ipc.delegate = self
+        @image_piker = UIImagePickerController.alloc.init
+        @image_piker = self
+        @image_picker.sourceType = UIImagePickerControllerSourceTypeCamera
 
-  def imagePickerController(picker, didFinishPickingMediaWithInfo:info)
-    imageToSave = info.objectForKey UIImagePickerControllerOriginalImage
-    UIImageWriteToSavedPhotosAlbum(imageToSave, nil, nil, nil)
-  end
+        self.presentModalViewController(@image_picker, animated:true)
+      else
+        show_alert
+      end
+    end
+
+    def open_gallery
+      @image_picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary
+      presentModalViewController(@image_picker, animated:true)
+    end
+
+    def show_alert
+      alert = UIAlertView.new
+      alert.message = 'No Camera in device'
+      alert.show
+    end
+
+    #Check Camera available or not
+    def camera_present
+      UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceTypeCamera)
+    end
+
 
 end
