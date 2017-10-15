@@ -1,6 +1,7 @@
 class SecondViewController < UIViewController
 
 
+
     def viewDidLoad
       view.backgroundColor = UIColor.underPageBackgroundColor
       loadButtons
@@ -8,7 +9,7 @@ class SecondViewController < UIViewController
 
     def loadButtons
       @camera_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-      @camera_button.frame  = [[50, 200], [200, 50]]
+      @camera_button.frame  = [[50, 150], [200, 50]]
       @camera_button.setTitle("Click from camera", forState:UIControlStateNormal)
       @camera_button.addTarget(self, action: :start_camera, forControlEvents:UIControlEventTouchUpInside)
       view.addSubview(@camera_button)
@@ -19,6 +20,12 @@ class SecondViewController < UIViewController
       @gallery_button.addTarget(self, action: :open_gallery, forControlEvents:UIControlEventTouchUpInside)
       view.addSubview(@gallery_button)
 
+      @edit_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+      @edit_button.frame = [[50,400],[200,260]]
+      @edit_button.setTitle("Edit",forState:UIControlStateNormal)
+      @edit_button.addTarget(self,action: :photo_edit_controller, forControlEvents:UIControlEventTouchUpInside)
+      view.addSubview(@edit_button)
+
       @image_picker = UIImagePickerController.alloc.init
       @image_picker.delegate = self
     end
@@ -28,7 +35,7 @@ class SecondViewController < UIViewController
       self.dismissModalViewControllerAnimated(true)
       @image_view.removeFromSuperview if @image_view
       @image_view = UIImageView.alloc.initWithImage(image)
-      @image_view.frame = [[50, 200], [200, 180]]
+      @image_view.frame = [[50, 250], [200, 180]]
       view.addSubview(@image_view)
     end
 
@@ -61,6 +68,8 @@ class SecondViewController < UIViewController
     def camera_present
       UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceTypeCamera)
     end
-
+    def photo_edit_controller
+      navigationController.pushViewController(PhotoEditController.new,animated: true)
+    end
 
 end

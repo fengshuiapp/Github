@@ -6,8 +6,6 @@ class MainViewController < UIViewController
       self.view = MainView.new
       #view.button.addTarget(self,action: :alert_controller, forControlEvents: UIControlEventTouchUpInside)
       view.todo_button.addTarget(self,action: :second_controller, forControlEvents: UIControlEventTouchUpInside)
-
-
   end
   #def alert_controller
    #   @alert_controller = UIAlertController.alertControllerWithTitle('Alert Title',

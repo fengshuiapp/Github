@@ -1,0 +1,2 @@
+class PhotoEditController < UIViewController
+end
