@@ -23,6 +23,6 @@ class MainViewController < UIViewController
     #  puts 'OK pressed'
     #end
     def second_controller
-      navigationController.pushViewController(SecondViewController.new,animated: false)
+      navigationController.pushViewController(SecondViewController.new,animated: true)
     end
 end

@@ -36,11 +36,11 @@ class SecondViewController < UIViewController
       if camera_present
         #@ipc = UIImagePickerController.alloc.init
         #@ipc.delegate = self
-        @image_piker = UIImagePickerController.alloc.init
-        @image_piker = self
+        #@image_piker = UIImagePickerController.alloc.init
+        #@image_piker = self
         @image_picker.sourceType = UIImagePickerControllerSourceTypeCamera
 
-        self.presentModalViewController(@image_picker, animated:true)
+        presentModalViewController(@image_picker, animated:true)
       else
         show_alert
       end
