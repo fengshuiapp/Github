@@ -69,7 +69,7 @@ class SecondViewController < UIViewController
       UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceTypeCamera)
     end
     def photo_edit_controller
-      navigationController.pushViewController(PhotoEditController.new,animated: true)
+      navigationController.pushViewController(PhotoEditController.new, animated: true)
     end
 
 end

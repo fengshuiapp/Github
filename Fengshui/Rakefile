@@ -11,6 +11,6 @@ end
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'Fengshui'
-  app.identifier = 'com.livecode.testprofile2.HelloWorld'
-
+  app.identifier = 'com.livecode.testprofile3.HelloWorld'
+  app.info_plist['NSCameraUsageDescription'] = 'This app uses camera'
 end
