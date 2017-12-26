@@ -1,0 +1,2 @@
+class ResultsController < UIViewController
+end

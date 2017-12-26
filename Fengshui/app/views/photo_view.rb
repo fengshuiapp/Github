@@ -1,0 +1,7 @@
+class PhotoView < UIView
+
+
+
+
+	
+end
