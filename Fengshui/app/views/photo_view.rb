@@ -1,7 +1,0 @@
-class PhotoView < UIView
-
-
-
-
-	
-end
