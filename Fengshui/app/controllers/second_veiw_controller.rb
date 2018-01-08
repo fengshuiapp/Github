@@ -1,7 +1,5 @@
 class SecondViewController < UIViewController
 
-
-
     def viewDidLoad
       view.backgroundColor = UIColor.underPageBackgroundColor
       loadButtons
@@ -20,11 +18,11 @@ class SecondViewController < UIViewController
       @gallery_button.addTarget(self, action: :open_gallery, forControlEvents:UIControlEventTouchUpInside)
       view.addSubview(@gallery_button)
 
-      @edit_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-      @edit_button.frame = [[50,400],[200,260]]
-      @edit_button.setTitle("Edit",forState:UIControlStateNormal)
-      @edit_button.addTarget(self,action: :photo_edit_controller, forControlEvents:UIControlEventTouchUpInside)
-      view.addSubview(@edit_button)
+      next_button =
+      UIBarButtonItem.alloc.initWithTitle('Next', style:
+      UIBarButtonItemStyleDone, target: self, action: :resultdisplay)
+      # Add the Bar Button Item to the Navigation Bar
+      self.navigationItem.rightBarButtonItem = next_button
 
       @image_picker = UIImagePickerController.alloc.init
       @image_picker.delegate = self
@@ -33,20 +31,36 @@ class SecondViewController < UIViewController
     #Tells the delegate that the user picked a still image or movie.
     def imagePickerController(picker, didFinishPickingImage:image, editingInfo:info)
       self.dismissModalViewControllerAnimated(true)
-      @image_view.removeFromSuperview if @image_view
-      @image_view = UIImageView.alloc.initWithImage(image)
-      @image_view.frame = [[50, 250], [200, 180]]
-      view.addSubview(@image_view)
+      @scrollView.removeFromSuperview if @scrollView
+      @scrollView = UIScrollView.alloc.init
+      @scrollView.frame = [[40,250 ], [300, 300]]
+      
+      @scrollView.scrollEnabled = false
+      @scrollView.clipsToBounds = true
+      @scrollView.contentSize = image.size
+      @scrollView.minimumZoomScale = 1.0
+      @scrollView.maximumZoomScale = 4.0
+      @scrollView.zoomScale = 0.3
+      @scrollView.delegate = self
+
+
+      @imageView = UIImageView.alloc.initWithImage(image)
+      @imageView.contentMode = UIViewContentModeScaleAspectFit
+      @imageView.userInteractionEnabled = true
+      @imageView.frame = @scrollView.bounds
+
+      @scrollView.addSubview(@imageView)
+
+      view.addSubview(@scrollView)
+
+     
     end
 
     def start_camera
       if camera_present
-        #@ipc = UIImagePickerController.alloc.init
-        #@ipc.delegate = self
-        #@image_piker = UIImagePickerController.alloc.init
-        #@image_piker = self
         @image_picker.sourceType = UIImagePickerControllerSourceTypeCamera
-
+        @image_picker.allowsEditing = false
+        @image_picker.showsCameraControls = true
         presentModalViewController(@image_picker, animated:true)
       else
         show_alert
@@ -68,8 +82,24 @@ class SecondViewController < UIViewController
     def camera_present
       UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceTypeCamera)
     end
-    def photo_edit_controller
-      navigationController.pushViewController(PhotoEditController.new, animated: true)
+
+    def viewForZoomingInScrollView(scrollView)
+      scrollView.subviews.first
     end
+
+    def scrollViewDidZoom(scrollView)
+      if scrollView.zoomScale != 1.0
+        scrollView.scrollEnabled = true
+      else
+        scrollView.scrollEnabled = false
+      end
+    end
+
+
+    def resultdisplay
+
+    navigationController.pushViewController(ResultDisplayController.new, animated: true)
+    end
+    
 
 end

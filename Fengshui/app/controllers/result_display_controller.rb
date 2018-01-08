@@ -22,7 +22,7 @@ class ResultDisplayController < UIViewController
 		view.addSubview(@input_field2) 
 
 		@submit_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-        @submit_button.frame = [[50,450],[200,260]]
+        @submit_button.frame = [[50,150],[200,260]]
         @submit_button.setTitle("Submit",forState:UIControlStateNormal)
         @submit_button.addTarget(self,action: :Results_display, forControlEvents:UIControlEventTouchUpInside)
         view.addSubview(@submit_button)
