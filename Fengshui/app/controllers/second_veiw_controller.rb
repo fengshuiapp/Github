@@ -49,9 +49,23 @@ class SecondViewController < UIViewController
       @imageView.userInteractionEnabled = true
       @imageView.frame = @scrollView.bounds
 
+
+      @labelView = UILabel.alloc.init
+      @labelView.frame = [[60,300],[10,10]]
+      @labelView.backgroundColor = UIColor.clearColor
+      @labelView.text = "A"
+      @labelView.layer.borderColor = UIColor.blackColor
+      @labelView.layer.borderWidth = 2.0
+
+
+      view.addSubview(@labelView)
+
+
       @scrollView.addSubview(@imageView)
 
       view.addSubview(@scrollView)
+      view.bringSubviewToFront(@labelView)
+      view.sendSubviewToBack(@imageView)
 
      
     end
