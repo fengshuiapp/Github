@@ -611,7 +611,7 @@ $circularPlate=
       @result_final= "You gave me #{year} -- Error"
       
   end
-  @result_final = $earthStar.to_s
+ #@result_final = $earthStar.to_s
 end
 
 def insertEarth(i)
