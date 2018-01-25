@@ -534,11 +534,17 @@ $circularPlate=
 		@input_field2.placeholder = "Enter the facing direction"
 		view.addSubview(@input_field2) 
 
-		@submit_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    @submit_button.frame = [[50,350],[200,260]]
-    @submit_button.setTitle("Submit",forState:UIControlStateNormal)
-    @submit_button.addTarget(self,action: :Results_display, forControlEvents:UIControlEventTouchUpInside)
-    view.addSubview(@submit_button)
+		#@submit_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    #@submit_button.frame = [[50,350],[200,260]]
+    #@submit_button.setTitle("Submit",forState:UIControlStateNormal)
+    #@submit_button.addTarget(self,action: :Results_display, forControlEvents:UIControlEventTouchUpInside)
+    #view.addSubview(@submit_button)
+
+    next_button =
+      UIBarButtonItem.alloc.initWithTitle('Submit', style:
+      UIBarButtonItemStyleDone, target: self, action: :Results_display)
+      # Add the Bar Button Item to the Navigation Bar
+      self.navigationItem.rightBarButtonItem = next_button
 	end
 
 
