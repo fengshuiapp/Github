@@ -15,12 +15,12 @@ class MainView < UIView
     #addSubview(@button)
 
     @todo_button = UIButton.buttonWithType(UIButtonTypeSystem)
-    @todo_button.setTitle('Lets Start!',forState: UIControlStateNormal)
+    @todo_button.setTitle('Start->',forState: UIControlStateNormal)
     #@todo_button.setTitle ('pressed', forState: UIControlStateHighlighted)
     @todo_button.setTitleColor (UIColor.blueColor, forState: UIControlStateNormal)
 
 
-    @todo_button.frame = [[20,300],[300,30]]
+    @todo_button.frame = [[250,600],[100,30]]
     addSubview(@todo_button)
 
 

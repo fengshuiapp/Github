@@ -9,6 +9,6 @@ class MainViewController < UIViewController
   end
  
     def second_controller
-      navigationController.pushViewController(SecondViewController.new,animated: true)
+      navigationController.pushViewController(ResultDisplayController.new,animated: true)
     end
 end
