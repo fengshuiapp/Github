@@ -1,8 +1,9 @@
 class ResultDisplayController < UIViewController
     attr_accessor :result_final
     attr_accessor :plate_display
+    attr_accessor :facingdirection
 
-
+    $button=0
 
     def viewDidLoad
       view.backgroundColor = UIColor.underPageBackgroundColor
@@ -27,7 +28,7 @@ class ResultDisplayController < UIViewController
       @button1.layer.borderColor = UIColor.blackColor.CGColor
       @button1.layer.borderWidth = 1.0
       @button1.setTitle(@plate_display[0][0].to_s, forState:UIControlStateNormal)
-      @button1.addTarget(self, action: :result_display, forControlEvents:UIControlEventTouchUpInside)
+      @button1.addTarget(self, action: :result_display1, forControlEvents:UIControlEventTouchUpInside)
       view.addSubview(@button1)
 
       @button2 = UIButton.buttonWithType(UIButtonTypeRoundedRect)
@@ -35,7 +36,7 @@ class ResultDisplayController < UIViewController
       @button2.layer.borderColor = UIColor.blackColor.CGColor
       @button2.layer.borderWidth = 1.0
       @button2.setTitle(@plate_display[1][0].to_s, forState:UIControlStateNormal)
-      @button2.addTarget(self, action: :result_display, forControlEvents:UIControlEventTouchUpInside)
+      @button2.addTarget(self, action: :result_display2, forControlEvents:UIControlEventTouchUpInside)
       view.addSubview(@button2)
 
       @button3 = UIButton.buttonWithType(UIButtonTypeRoundedRect)
@@ -43,7 +44,7 @@ class ResultDisplayController < UIViewController
       @button3.layer.borderColor = UIColor.blackColor.CGColor
       @button3.layer.borderWidth = 1.0
       @button3.setTitle(@plate_display[2][0].to_s, forState:UIControlStateNormal)
-      @button3.addTarget(self, action: :result_display, forControlEvents:UIControlEventTouchUpInside)
+      @button3.addTarget(self, action: :result_display3, forControlEvents:UIControlEventTouchUpInside)
       view.addSubview(@button3)
 
       @button4 = UIButton.buttonWithType(UIButtonTypeRoundedRect)
@@ -51,7 +52,7 @@ class ResultDisplayController < UIViewController
       @button4.layer.borderColor = UIColor.blackColor.CGColor
       @button4.layer.borderWidth = 1.0
       @button4.setTitle(@plate_display[3][0].to_s, forState:UIControlStateNormal)
-      @button4.addTarget(self, action: :result_display, forControlEvents:UIControlEventTouchUpInside)
+      @button4.addTarget(self, action: :result_display4, forControlEvents:UIControlEventTouchUpInside)
       view.addSubview(@button4)
 
       @button5 = UIButton.buttonWithType(UIButtonTypeRoundedRect)
@@ -59,7 +60,7 @@ class ResultDisplayController < UIViewController
       @button5.layer.borderColor = UIColor.blackColor.CGColor
       @button5.layer.borderWidth = 1.0
       @button5.setTitle(@plate_display[4][0].to_s, forState:UIControlStateNormal)
-      @button5.addTarget(self, action: :result_display, forControlEvents:UIControlEventTouchUpInside)
+      @button5.addTarget(self, action: :result_display5, forControlEvents:UIControlEventTouchUpInside)
       view.addSubview(@button5)
 
       @button6 = UIButton.buttonWithType(UIButtonTypeRoundedRect)
@@ -67,7 +68,7 @@ class ResultDisplayController < UIViewController
       @button6.layer.borderColor = UIColor.blackColor.CGColor
       @button6.layer.borderWidth = 1.0
       @button6.setTitle(@plate_display[5][0].to_s, forState:UIControlStateNormal)
-      @button6.addTarget(self, action: :result_display, forControlEvents:UIControlEventTouchUpInside)
+      @button6.addTarget(self, action: :result_display6, forControlEvents:UIControlEventTouchUpInside)
       view.addSubview(@button6)
 
       @button7 = UIButton.buttonWithType(UIButtonTypeRoundedRect)
@@ -75,7 +76,7 @@ class ResultDisplayController < UIViewController
       @button7.layer.borderColor = UIColor.blackColor.CGColor
       @button7.layer.borderWidth = 1.0
       @button7.setTitle(@plate_display[6][0].to_s, forState:UIControlStateNormal)
-      @button7.addTarget(self, action: :result_display, forControlEvents:UIControlEventTouchUpInside)
+      @button7.addTarget(self, action: :result_display7, forControlEvents:UIControlEventTouchUpInside)
       view.addSubview(@button7)
 
       @button1 = UIButton.buttonWithType(UIButtonTypeRoundedRect)
@@ -83,7 +84,7 @@ class ResultDisplayController < UIViewController
       @button1.layer.borderColor = UIColor.blackColor.CGColor
       @button1.layer.borderWidth = 1.0
       @button1.setTitle(@plate_display[7][0].to_s, forState:UIControlStateNormal)
-      @button1.addTarget(self, action: :result_display, forControlEvents:UIControlEventTouchUpInside)
+      @button1.addTarget(self, action: :result_display8, forControlEvents:UIControlEventTouchUpInside)
       view.addSubview(@button1)
 
       @button8 = UIButton.buttonWithType(UIButtonTypeRoundedRect)
@@ -91,21 +92,160 @@ class ResultDisplayController < UIViewController
       @button8.layer.borderColor = UIColor.blackColor.CGColor
       @button8.layer.borderWidth = 1.0
       @button8.setTitle(@plate_display[8][0].to_s, forState:UIControlStateNormal)
-      @button8.addTarget(self, action: :result_display, forControlEvents:UIControlEventTouchUpInside)
+      @button8.addTarget(self, action: :result_display9, forControlEvents:UIControlEventTouchUpInside)
       view.addSubview(@button8)
 
 
     end
 
-   def result_display
-      result_calculate
+   def result_display1
+    $button =1
+      result_calculate($button)
       alert = UIAlertView.new
        alert.addButtonWithTitle("OK")
        alert.message = @result_room
        alert.show 
      end
-     def result_calculate
-      @result_room = "test"
+
+     def result_display2
+       $button =2
+      result_calculate($button)
+      alert = UIAlertView.new
+       alert.addButtonWithTitle("OK")
+       alert.message = @result_room
+       alert.show 
+     end
+     def result_display3
+       $button =3
+      result_calculate($button)
+      alert = UIAlertView.new
+       alert.addButtonWithTitle("OK")
+       alert.message = @result_room
+       alert.show 
+     end
+     def result_display4
+       $button =4
+      result_calculate($button)
+      alert = UIAlertView.new
+       alert.addButtonWithTitle("OK")
+       alert.message = @result_room
+       alert.show 
+     end
+     def result_display5
+       $button =5
+      result_calculate($button)
+      alert = UIAlertView.new
+       alert.addButtonWithTitle("OK")
+       alert.message = @result_room
+       alert.show 
+     end
+     def result_display6
+       $button =6
+      result_calculate($button)
+      alert = UIAlertView.new
+       alert.addButtonWithTitle("OK")
+       alert.message = @result_room
+       alert.show 
+     end
+     def result_display7
+       $button =7
+      result_calculate($button)
+      alert = UIAlertView.new
+       alert.addButtonWithTitle("OK")
+       alert.message = @result_room
+       alert.show 
+     end
+     def result_display8
+       $button =8
+      result_calculate($button)
+      alert = UIAlertView.new
+       alert.addButtonWithTitle("OK")
+       alert.message = @result_room
+       alert.show 
+     end
+     def result_displa9
+       $button =9
+      result_calculate($button)
+      alert = UIAlertView.new
+       alert.addButtonWithTitle("OK")
+       alert.message = @result_room
+       alert.show 
+     end
+
+
+     def result_calculate(i)
+
+
+      if ((@plate_display[i][0]==1 and @plate_display[i][1]==6)or(@plate_display[i][0]==6 and @plate_display[i][1]==1))
+        if @facingdirection == "CHIA"or"MAO"or"I"or"CH'EN"or"SUN"or"SSU"or"JEN"or"TZU"or"KUEI"
+          @result_room = "Successful scholarly pursuits. Children will be intelligent and talented."
+        elsif @facingdirection == "PING"or"WU"or"TING"
+          @result_room = "The head of the family will be injured in accidents. Children may be uncaring toward
+          their parents, and descendants may become thieves and vring harm to family members"
+        else
+          @result_room = ""
+        end
+      elsif ((@plate_display[i][0]==2 and @plate_display[i][1]==7)or(@plate_display[i][0]==7 and @plate_display[i][1]==2))
+        if @facingdirection == "WEI"or"K'UN"or"SHEN"or"CH'OU"or"KEN"or"YIN"or"PING"or"WU"or"TING"
+          @result_room = "Finalcial success, but seedy connections may be involved."
+        elsif @facingdirection == "HUS"or"CH'IEN"or"HAI"or"KENG"or"YU"or"HSIN"
+          @result_room = "Infant death, illness and accidents."
+        else
+          @result_room =""
+        end
+      elsif ((@plate_display[i][0]==3 and @plate_display[i][1]==8)or(@plate_display[i][0]==8 and @plate_display[i][1]==3))
+        if @facingdirection == "PING"or"WU"or"TING"or"CHIA"or"MAO"or"I"or"CH'EN"or"SUN"or"SSU"
+          @result_room ="Success in politics or in producing caring and responsible Children."
+        elsif @facingdirection == "WEI"or"K'UN"or"SHEN"
+          @result_room = "Suicide. Children may die young."
+        else
+          @result_room=""
+        end
+      elsif ((@plate_display[i][0]==4 and @plate_display[i][1]==9)or(@plate_display[i][0]==9 and @plate_display[i][1]==4))
+        if @facingdirection == "JEN"or"TZU"or"KUEI"or"KENG"or"YU"or"HSIN"or"HUS"or"CH'IEN"or"HAI"
+          @result_room="Tremendous success in business through ethical means."
+        elsif @facingdirection == "CHIA"or"MAO"or"I"
+          @result_room="Injury or death in war. Children will become orphans."
+        else
+          @result_room =""
+        end
+      elsif ((@plate_display[i][0]==1 and @plate_display[i][1]==4)or(@plate_display[i][0]==4 and @plate_display[i][1]==1))
+
+          @result_room="Success in scholarly pursuits."
+      elsif @plate_display[i][0]==6 and @plate_display[i][1]==8
+          @result_room ="Success in business or the military arts."
+      elsif @plate_display[i][0]==8 and @plate_display[i][1]==6
+        @result_room = "Success in scholarly or artistic endeavors."
+      elsif @plate_display[i][0]==4 and @plate_display[i][1]==6
+        @result_room="Brings talent and fame."
+      elsif @plate_display[i][0]==8 and @plate_display[i][1]==9
+        @result_room="Many happy occasions in family life."
+      elsif @plate_display[i][0]==9 and @plate_display[i][1]==8
+        @result_room="Enhances fame."
+      elsif @plate_display[i][0]==2 and @plate_display[i][1]==8
+        if @facingdirection == "HSII"or"CH'EN"or"HAI"
+        @result_room="Great wealth."
+      end
+    elsif @plate_display[i][0]==3 and @plate_display[i][1]==1
+      if @facingdirection == "KENG"or"YU"or"BSIN"
+        @result_room="Many descendants."
+      end
+    #elsif @plate_display[i][0]==6 and @plate_display[i][1]==8
+        
+        
+          
+          
+          
+          
+          
+            
+
+          
+      else 
+        @result_room = "No confitional interactions."
+      end
+
+
      end
 
 

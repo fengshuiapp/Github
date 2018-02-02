@@ -777,6 +777,7 @@ def resultdisplay
     @secondview = ResultDisplayController.new
     @secondview.result_final = @result_final
     @secondview.plate_display = $chartArray
+    @secondview.facingdirection = $facingDirection
     navigationController.pushViewController(@secondview, animated: true)
     end
 
