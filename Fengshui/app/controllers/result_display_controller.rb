@@ -79,27 +79,27 @@ class ResultDisplayController < UIViewController
       @button7.addTarget(self, action: :result_display7, forControlEvents:UIControlEventTouchUpInside)
       view.addSubview(@button7)
 
-      @button1 = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-      @button1.frame  = [[150, 450], [50, 50]]
-      @button1.layer.borderColor = UIColor.blackColor.CGColor
-      @button1.layer.borderWidth = 1.0
-      @button1.setTitle(@plate_display[7][0].to_s, forState:UIControlStateNormal)
-      @button1.addTarget(self, action: :result_display8, forControlEvents:UIControlEventTouchUpInside)
-      view.addSubview(@button1)
-
       @button8 = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-      @button8.frame  = [[200, 450], [50, 50]]
+      @button8.frame  = [[150, 450], [50, 50]]
       @button8.layer.borderColor = UIColor.blackColor.CGColor
       @button8.layer.borderWidth = 1.0
-      @button8.setTitle(@plate_display[8][0].to_s, forState:UIControlStateNormal)
-      @button8.addTarget(self, action: :result_display9, forControlEvents:UIControlEventTouchUpInside)
+      @button8.setTitle(@plate_display[7][0].to_s, forState:UIControlStateNormal)
+      @button8.addTarget(self, action: :result_display8, forControlEvents:UIControlEventTouchUpInside)
       view.addSubview(@button8)
+
+      @button9 = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+      @button9.frame  = [[200, 450], [50, 50]]
+      @button9.layer.borderColor = UIColor.blackColor.CGColor
+      @button9.layer.borderWidth = 1.0
+      @button9.setTitle(@plate_display[8][0].to_s, forState:UIControlStateNormal)
+      @button9.addTarget(self, action: :result_display9, forControlEvents:UIControlEventTouchUpInside)
+      view.addSubview(@button9)
 
 
     end
 
    def result_display1
-    $button =1
+    $button =0
       result_calculate($button)
       alert = UIAlertView.new
        alert.addButtonWithTitle("OK")
@@ -108,7 +108,7 @@ class ResultDisplayController < UIViewController
      end
 
      def result_display2
-       $button =2
+       $button =1
       result_calculate($button)
       alert = UIAlertView.new
        alert.addButtonWithTitle("OK")
@@ -116,7 +116,7 @@ class ResultDisplayController < UIViewController
        alert.show 
      end
      def result_display3
-       $button =3
+       $button =2
       result_calculate($button)
       alert = UIAlertView.new
        alert.addButtonWithTitle("OK")
@@ -124,7 +124,7 @@ class ResultDisplayController < UIViewController
        alert.show 
      end
      def result_display4
-       $button =4
+       $button =3
       result_calculate($button)
       alert = UIAlertView.new
        alert.addButtonWithTitle("OK")
@@ -132,7 +132,7 @@ class ResultDisplayController < UIViewController
        alert.show 
      end
      def result_display5
-       $button =5
+       $button =4
       result_calculate($button)
       alert = UIAlertView.new
        alert.addButtonWithTitle("OK")
@@ -140,7 +140,7 @@ class ResultDisplayController < UIViewController
        alert.show 
      end
      def result_display6
-       $button =6
+       $button =5
       result_calculate($button)
       alert = UIAlertView.new
        alert.addButtonWithTitle("OK")
@@ -148,7 +148,7 @@ class ResultDisplayController < UIViewController
        alert.show 
      end
      def result_display7
-       $button =7
+       $button =6
       result_calculate($button)
       alert = UIAlertView.new
        alert.addButtonWithTitle("OK")
@@ -156,15 +156,15 @@ class ResultDisplayController < UIViewController
        alert.show 
      end
      def result_display8
-       $button =8
+       $button =7
       result_calculate($button)
       alert = UIAlertView.new
        alert.addButtonWithTitle("OK")
        alert.message = @result_room
        alert.show 
      end
-     def result_displa9
-       $button =9
+     def result_display9
+       $button =8
       result_calculate($button)
       alert = UIAlertView.new
        alert.addButtonWithTitle("OK")
@@ -183,7 +183,7 @@ class ResultDisplayController < UIViewController
           @result_room = "The head of the family will be injured in accidents. Children may be uncaring toward
           their parents, and descendants may become thieves and vring harm to family members"
         else
-          @result_room = ""
+          @result_room = "No conditional and unconditional interactions."
         end
       elsif ((@plate_display[i][0]==2 and @plate_display[i][1]==7)or(@plate_display[i][0]==7 and @plate_display[i][1]==2))
         if @facingdirection == "WEI"or"K'UN"or"SHEN"or"CH'OU"or"KEN"or"YIN"or"PING"or"WU"or"TING"
@@ -191,7 +191,7 @@ class ResultDisplayController < UIViewController
         elsif @facingdirection == "HUS"or"CH'IEN"or"HAI"or"KENG"or"YU"or"HSIN"
           @result_room = "Infant death, illness and accidents."
         else
-          @result_room =""
+          @result_room ="No conditional and unconditional interactions."
         end
       elsif ((@plate_display[i][0]==3 and @plate_display[i][1]==8)or(@plate_display[i][0]==8 and @plate_display[i][1]==3))
         if @facingdirection == "PING"or"WU"or"TING"or"CHIA"or"MAO"or"I"or"CH'EN"or"SUN"or"SSU"
@@ -199,7 +199,7 @@ class ResultDisplayController < UIViewController
         elsif @facingdirection == "WEI"or"K'UN"or"SHEN"
           @result_room = "Suicide. Children may die young."
         else
-          @result_room=""
+          @result_room="No conditional and unconditional interactions."
         end
       elsif ((@plate_display[i][0]==4 and @plate_display[i][1]==9)or(@plate_display[i][0]==9 and @plate_display[i][1]==4))
         if @facingdirection == "JEN"or"TZU"or"KUEI"or"KENG"or"YU"or"HSIN"or"HUS"or"CH'IEN"or"HAI"
@@ -207,7 +207,7 @@ class ResultDisplayController < UIViewController
         elsif @facingdirection == "CHIA"or"MAO"or"I"
           @result_room="Injury or death in war. Children will become orphans."
         else
-          @result_room =""
+          @result_room ="No conditional and unconditional interactions."
         end
       elsif ((@plate_display[i][0]==1 and @plate_display[i][1]==4)or(@plate_display[i][0]==4 and @plate_display[i][1]==1))
 
@@ -225,24 +225,51 @@ class ResultDisplayController < UIViewController
       elsif @plate_display[i][0]==2 and @plate_display[i][1]==8
         if @facingdirection == "HSII"or"CH'EN"or"HAI"
         @result_room="Great wealth."
+      else
+        @result_room="No conditional and unconditional interactions."
       end
     elsif @plate_display[i][0]==3 and @plate_display[i][1]==1
       if @facingdirection == "KENG"or"YU"or"BSIN"
         @result_room="Many descendants."
+      else
+        @result_room="No conditional and unconditional interactions."
       end
-    #elsif @plate_display[i][0]==6 and @plate_display[i][1]==8
+    elsif @plate_display[i][0]==7 and @plate_display[i][1]==9
+      @result_room="Problems associated with politics."
+    elsif ((@plate_display[i][0]==2 and @plate_display[i][1]==5)or(@plate_display[i][0]==5 and @plate_display[i][1]==2))
+      @result_room="Severe illness."
+    elsif @plate_display[i][0]==9 and @plate_display[i][1]==7
+      @result_room="fire caused by human activity."
+    elsif @plate_display[i][0]==2 and @plate_display[i][1]==7
+      @result_room="File caused by natural circumstances."
+    elsif @plate_display[i][0]==5 and @plate_display[i][1]==5
+      @result_room="Severe illness or death."
+    elsif ((@plate_display[i][0]==5 and @plate_display[i][1]==9)or(@plate_display[i][0]==9 and @plate_display[i][1]==5))
+      @result_room="Signify accidents that lead to injury or death."
+    elsif ((@plate_display[i][0]==7 and @plate_display[i][1]==6)or(@plate_display[i][0]==6 and @plate_display[i][1]==7))
+      @result_room="Armed robbery and loss of fortunes.There is also the prossiblity of injuries."
+    elsif ((@plate_display[i][0]==3 and @plate_display[i][1]==2)or(@plate_display[i][0]==2 and @plate_display[i][1]==3))
+      @result_room="Quarrels and disharmony in relationships. If this combination is located in the kitchen, it signifies
+       having too many mouths to feed, that is, financial hard times for the family."
+     elsif @plate_display[i][0]==7 and @plate_display[i][1]==3
+      @result_room="Unexpected fains in business, but these gains will invite robbery and trickery."
+    elsif @plate_display[i][0]==3 and @plate_display[i][1]==7
+      @result_room="Illness associated with worries and anxieties. There is also the prossiblity of being victimized by 
+      politics or being embroiled in legal disputes."
+    elsif @plate_display[i][0]==6 and @plate_display[i][1]==9
+      @result_room="Illness involving the failure of internal organs. The eldest member of the family has the highest risk."
+    elsif @plate_display[i][0]==7 and @plate_display[i][1]==9 and @plate_display[i][2]==5
+      @result_room="Terminal illness."
+    elsif @plate_display[i][0]==8 and @plate_display[i][1]==4
+      @result_room="Children will be unhealthy."
+    elsif @plate_display[i][0]==2 and @plate_display[i][1]==9
+      @result_room="Obstacels in business ventures."
+    elsif @plate_display[i][0]==3 and @plate_display[i][1]==8
+      @result_room="Illness in Children."
         
-        
-          
-          
-          
-          
-          
-            
-
           
       else 
-        @result_room = "No confitional interactions."
+        @result_room = "No conditional and unconditional interactions."
       end
 
 
