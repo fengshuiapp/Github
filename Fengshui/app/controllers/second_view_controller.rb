@@ -513,7 +513,7 @@ $circularPlate=
 
     def start_camera
       if camera_present
-        result_algrythem
+        #result_algrythem
         @image_picker.sourceType = UIImagePickerControllerSourceTypeCamera
         @image_picker.allowsEditing = false
         @image_picker.showsCameraControls = true
@@ -524,7 +524,7 @@ $circularPlate=
     end
 
     def open_gallery
-      result_algrythem
+      #result_algrythem
 
       @image_picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary
       presentModalViewController(@image_picker, animated:true)
@@ -579,9 +579,29 @@ $circularPlate=
   #puts "Please enter year when the house is completed:"
   converter = LunarSolarConverter.new
   solar = Solar.new
+  if @input_field.text.to_i != 0
   solar.solarYear = @input_field.text.to_i
+else
+  solar.solarYear = 1888
+  @temp=1
+  wrong_alert
+end
+if @input_field3.text.to_i !=0
   solar.solarMonth = @input_field3.text.to_i
+else
+  solar.solarMonth = 1
+  @temp=1
+  wrong_alert
+end
+if @input_field4.text.to_i !=0
   solar.solarDay = @input_field4.text.to_i
+else
+  solar.solarDay = 1
+  @temp=1
+  wrong_alert
+end
+
+
   lunar = converter.SolarToLunar(solar)
       $year=lunar.lunarYear
       #$year = @input_field.text.to_i
@@ -605,18 +625,25 @@ $circularPlate=
     when 2024..2043
       $earthStar=9
     else
-      @result_final= "You gave me #{year} -- Error"
+      $earthStar=0
+      @temp=1
+      wrong_alert
       
   end
  #@result_final = $earthStar.to_s
 end
 
 def insertEarth(i)
+  if i!=0
   j=$starNum.index(i)
   $forwardMovement.each do |box|
     $chartArray[box][0]=$starNum[j]
     j+=1
   end
+else
+  @temp=1
+  wrong_alert
+end
    #@result_final = j.to_s
 end
 
@@ -627,7 +654,13 @@ def insertFacing
 
   
   #puts "Please enter the Facing of the household:"
+  #(2..100).include?(5)
+  if (0..360).include?(@input_field2.text.to_i)
   $facingDegree=@input_field2.text.to_f
+else
+  wrong_alert
+end
+
   
   $facingDirection = luopanConvertor($facingDegree)
   #puts "The Facing direction is #{$facingDirection}"
@@ -692,6 +725,8 @@ def insertMountain
 end
 
 def typeOfChart
+  if @temp!=1
+
   if ($mountainMovement==0 and $facingMovement==1)
     #Forward mountain and backward facing
     @result_final =  "Descending Water Condition. \rThe fortunes of a house with this combination will be enhanced if there is water in front."
@@ -707,6 +742,9 @@ def typeOfChart
     #Backward mountain and backward facing
     @result_final = "Reverse Mountain and Reverse Water Condition. \rA house with this combination will have good fortune regardless of its position relative to mountains and water."
   end
+else
+  @result_final = "N.A."
+end
 end
 
 def luopanConvertor(degree) #find the direction in Chinese
@@ -763,17 +801,26 @@ def luopanConvertor(degree) #find the direction in Chinese
     when 352.5..360
       return "TZU"
     else
-      @result_final = "You gave me #{degree} -- Error"
+      return "TZU"
+      @temp=1
+      wrong_alert
   end
   
 end
 
-
+ def wrong_alert
+      @result_final = "N.A."
+      alert = UIAlertView.new
+       alert.addButtonWithTitle("Back")
+       alert.message = "Please go back and enter input with instructions."
+       alert.show 
+     end
 
 def resultdisplay
     #@result_final = "test"
           #@grid_1 = $chartArray[0][0].to_s
     #@grid_1 = "test"
+    result_algrythem
     @secondview = ResultDisplayController.new
     @secondview.result_final = @result_final
     @secondview.plate_display = $chartArray

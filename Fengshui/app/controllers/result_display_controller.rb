@@ -269,7 +269,62 @@ class ResultDisplayController < UIViewController
         
           
       else 
-        @result_room = "No conditional and unconditional interactions."
+      case @plate_display[i][0]
+      when 1,4,6,8
+        @temp = 1.5
+
+      when 3, 7
+        @temp = 0
+
+      when 2, 5
+        @temp = -1.5
+
+      when 9
+        @temp = 0
+
+      end
+
+      case @plate_display[i][1]
+
+        when 1,4,6,8
+        @temp = @temp+2
+
+      when 3, 7
+        @temp = @temp + 0
+
+      when 2, 5
+        @temp = @temp -2 
+
+      when 9
+        @temp = 0
+
+      end
+
+case @plate_display[i][2]
+
+        when 1,4,6,8
+        @temp = @temp+0.5
+
+      when 3, 7
+        @temp = @temp + 0
+
+      when 2, 5
+        @temp = @temp -0.5
+
+      when 9
+        @temp = 0
+
+      end
+    if @temp<0
+
+        @result_room = "Bad Fengshui."
+      elsif  @temp == 0
+        @result_room = "Neutral."
+      elsif @temp >0 
+        @result_room = "Good Fengshui."
+      end
+
+        
       end
 
 
