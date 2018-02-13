@@ -353,6 +353,14 @@ $circularPlate=
     @input_field2.placeholder = "0-360"
     view.addSubview(@input_field2) 
 
+     @apply_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+      @apply_button.frame  = [[200, 175], [80, 20]]
+      @apply_button.layer.borderColor = UIColor.blackColor.CGColor
+      @apply_button.layer.borderWidth = 1.0
+      @apply_button.setTitle("Apply", forState:UIControlStateNormal)
+      @apply_button.addTarget(self, action: :apply_algorithm, forControlEvents:UIControlEventTouchUpInside)
+      view.addSubview(@apply_button)
+
 
     next_button =
       UIBarButtonItem.alloc.initWithTitle('Result', style:
@@ -403,98 +411,7 @@ $circularPlate=
       @imageView.frame = @scrollView.bounds
 
 
-      @labelView = UILabel.alloc.init
-      @labelView.frame = [[40,300],[100,100]]
-      @labelView.numberOfLines = 2
-      @labelView.text = $chartArray[0][2].to_s+"\s"+$chartArray[0][1].to_s+"\r"+"\s"+$chartArray[0][0].to_s
-      @labelView.textColor = UIColor.redColor
-      @labelView.textAlignment = NSTextAlignmentCenter
-      @labelView.layer.borderColor = UIColor.blackColor.CGColor
-      @labelView.layer.borderWidth = 1.0
-
-      @labelView2 = UILabel.alloc.init
-      @labelView2.frame = [[140,300],[100,100]]
-      @labelView2.numberOfLines = 2
-      @labelView2.text = $chartArray[1][2].to_s+"\s"+$chartArray[1][1].to_s+"\r"+"\s"+$chartArray[1][0].to_s
-      @labelView2.textColor = UIColor.redColor
-      @labelView2.textAlignment = NSTextAlignmentCenter
-      @labelView2.layer.borderColor = UIColor.blackColor.CGColor
-      @labelView2.layer.borderWidth = 1.0
-
-      @labelView3 = UILabel.alloc.init
-      @labelView3.frame = [[240,300],[100,100]]
-      @labelView3.numberOfLines = 2
-      @labelView3.text = $chartArray[2][2].to_s+"\s"+$chartArray[2][1].to_s+"\r"+"\s"+$chartArray[2][0].to_s
-      @labelView3.textColor = UIColor.redColor
-      @labelView3.textAlignment = NSTextAlignmentCenter
-      @labelView3.layer.borderColor = UIColor.blackColor.CGColor
-      @labelView3.layer.borderWidth = 1.0
-
-      @labelView4 = UILabel.alloc.init
-      @labelView4.frame = [[40,400],[100,100]]
-      @labelView4.numberOfLines = 2
-      @labelView4.text = $chartArray[3][2].to_s+"\s"+$chartArray[3][1].to_s+"\r"+"\s"+$chartArray[3][0].to_s
-      @labelView4.textColor = UIColor.redColor
-      @labelView4.textAlignment = NSTextAlignmentCenter
-      @labelView4.layer.borderColor = UIColor.blackColor.CGColor
-      @labelView4.layer.borderWidth = 1.0
-
-      @labelView5 = UILabel.alloc.init
-      @labelView5.frame = [[140,400],[100,100]]
-      @labelView5.numberOfLines = 2
-      @labelView5.text = $chartArray[4][2].to_s+"\s"+$chartArray[4][1].to_s+"\r"+"\s"+$chartArray[4][0].to_s
-      @labelView5.textColor = UIColor.redColor
-      @labelView5.textAlignment = NSTextAlignmentCenter
-      @labelView5.layer.borderColor = UIColor.blackColor.CGColor
-      @labelView5.layer.borderWidth = 1.0
-
-      @labelView6 = UILabel.alloc.init
-      @labelView6.frame = [[240,400],[100,100]]
-      @labelView6.numberOfLines = 2
-      @labelView6.text = $chartArray[5][2].to_s+"\s"+$chartArray[5][1].to_s+"\r"+"\s"+$chartArray[5][0].to_s
-      @labelView6.textColor = UIColor.redColor
-      @labelView6.textAlignment = NSTextAlignmentCenter
-      @labelView6.layer.borderColor = UIColor.blackColor.CGColor
-      @labelView6.layer.borderWidth = 1.0
-
-      @labelView7 = UILabel.alloc.init
-      @labelView7.frame = [[40,500],[100,100]]
-      @labelView7.numberOfLines = 2
-      @labelView7.text = $chartArray[6][2].to_s+"\s"+$chartArray[6][1].to_s+"\r"+"\s"+$chartArray[6][0].to_s
-      @labelView7.textColor = UIColor.redColor
-      @labelView7.textAlignment = NSTextAlignmentCenter
-      @labelView7.layer.borderColor = UIColor.blackColor.CGColor
-      @labelView7.layer.borderWidth = 1.0
-
-      @labelView8 = UILabel.alloc.init
-      @labelView8.frame = [[140,500],[100,100]]
-      @labelView8.numberOfLines = 2
-      @labelView8.text = $chartArray[7][2].to_s+"\s"+$chartArray[7][1].to_s+"\r"+"\s"+$chartArray[7][0].to_s
-      @labelView8.textColor = UIColor.redColor
-      @labelView8.textAlignment = NSTextAlignmentCenter
-      @labelView8.layer.borderColor = UIColor.blackColor.CGColor
-      @labelView8.layer.borderWidth = 1.0
-
-      @labelView9 = UILabel.alloc.init
-      @labelView9.frame = [[240,500],[100,100]]
-      @labelView9.numberOfLines = 2
-      @labelView9.text = $chartArray[8][2].to_s+"\s"+$chartArray[8][1].to_s+"\r"+"\s"+$chartArray[8][0].to_s
-      @labelView9.textColor = UIColor.redColor
-      @labelView9.textAlignment = NSTextAlignmentCenter
-      @labelView9.layer.borderColor = UIColor.blackColor.CGColor
-      @labelView9.layer.borderWidth = 1.0
-
-
-
-      view.addSubview(@labelView)
-      view.addSubview(@labelView2)
-      view.addSubview(@labelView3)
-      view.addSubview(@labelView4)
-      view.addSubview(@labelView5)
-      view.addSubview(@labelView6)
-      view.addSubview(@labelView7)
-      view.addSubview(@labelView8)
-      view.addSubview(@labelView9)
+      
 
 
       @scrollView.addSubview(@imageView)
@@ -819,11 +736,109 @@ end
        alert.show 
      end
 
+     def apply_algorithm
+
+      result_algrythem
+      @labelView = UILabel.alloc.init
+      @labelView.frame = [[40,300],[100,100]]
+      @labelView.numberOfLines = 2
+      @labelView.text = $chartArray[0][2].to_s+"\s"+$chartArray[0][1].to_s+"\r"+"\s"+$chartArray[0][0].to_s
+      @labelView.textColor = UIColor.redColor
+      @labelView.textAlignment = NSTextAlignmentCenter
+      @labelView.layer.borderColor = UIColor.blackColor.CGColor
+      @labelView.layer.borderWidth = 1.0
+
+      @labelView2 = UILabel.alloc.init
+      @labelView2.frame = [[140,300],[100,100]]
+      @labelView2.numberOfLines = 2
+      @labelView2.text = $chartArray[1][2].to_s+"\s"+$chartArray[1][1].to_s+"\r"+"\s"+$chartArray[1][0].to_s
+      @labelView2.textColor = UIColor.redColor
+      @labelView2.textAlignment = NSTextAlignmentCenter
+      @labelView2.layer.borderColor = UIColor.blackColor.CGColor
+      @labelView2.layer.borderWidth = 1.0
+
+      @labelView3 = UILabel.alloc.init
+      @labelView3.frame = [[240,300],[100,100]]
+      @labelView3.numberOfLines = 2
+      @labelView3.text = $chartArray[2][2].to_s+"\s"+$chartArray[2][1].to_s+"\r"+"\s"+$chartArray[2][0].to_s
+      @labelView3.textColor = UIColor.redColor
+      @labelView3.textAlignment = NSTextAlignmentCenter
+      @labelView3.layer.borderColor = UIColor.blackColor.CGColor
+      @labelView3.layer.borderWidth = 1.0
+
+      @labelView4 = UILabel.alloc.init
+      @labelView4.frame = [[40,400],[100,100]]
+      @labelView4.numberOfLines = 2
+      @labelView4.text = $chartArray[3][2].to_s+"\s"+$chartArray[3][1].to_s+"\r"+"\s"+$chartArray[3][0].to_s
+      @labelView4.textColor = UIColor.redColor
+      @labelView4.textAlignment = NSTextAlignmentCenter
+      @labelView4.layer.borderColor = UIColor.blackColor.CGColor
+      @labelView4.layer.borderWidth = 1.0
+
+      @labelView5 = UILabel.alloc.init
+      @labelView5.frame = [[140,400],[100,100]]
+      @labelView5.numberOfLines = 2
+      @labelView5.text = $chartArray[4][2].to_s+"\s"+$chartArray[4][1].to_s+"\r"+"\s"+$chartArray[4][0].to_s
+      @labelView5.textColor = UIColor.redColor
+      @labelView5.textAlignment = NSTextAlignmentCenter
+      @labelView5.layer.borderColor = UIColor.blackColor.CGColor
+      @labelView5.layer.borderWidth = 1.0
+
+      @labelView6 = UILabel.alloc.init
+      @labelView6.frame = [[240,400],[100,100]]
+      @labelView6.numberOfLines = 2
+      @labelView6.text = $chartArray[5][2].to_s+"\s"+$chartArray[5][1].to_s+"\r"+"\s"+$chartArray[5][0].to_s
+      @labelView6.textColor = UIColor.redColor
+      @labelView6.textAlignment = NSTextAlignmentCenter
+      @labelView6.layer.borderColor = UIColor.blackColor.CGColor
+      @labelView6.layer.borderWidth = 1.0
+
+      @labelView7 = UILabel.alloc.init
+      @labelView7.frame = [[40,500],[100,100]]
+      @labelView7.numberOfLines = 2
+      @labelView7.text = $chartArray[6][2].to_s+"\s"+$chartArray[6][1].to_s+"\r"+"\s"+$chartArray[6][0].to_s
+      @labelView7.textColor = UIColor.redColor
+      @labelView7.textAlignment = NSTextAlignmentCenter
+      @labelView7.layer.borderColor = UIColor.blackColor.CGColor
+      @labelView7.layer.borderWidth = 1.0
+
+      @labelView8 = UILabel.alloc.init
+      @labelView8.frame = [[140,500],[100,100]]
+      @labelView8.numberOfLines = 2
+      @labelView8.text = $chartArray[7][2].to_s+"\s"+$chartArray[7][1].to_s+"\r"+"\s"+$chartArray[7][0].to_s
+      @labelView8.textColor = UIColor.redColor
+      @labelView8.textAlignment = NSTextAlignmentCenter
+      @labelView8.layer.borderColor = UIColor.blackColor.CGColor
+      @labelView8.layer.borderWidth = 1.0
+
+      @labelView9 = UILabel.alloc.init
+      @labelView9.frame = [[240,500],[100,100]]
+      @labelView9.numberOfLines = 2
+      @labelView9.text = $chartArray[8][2].to_s+"\s"+$chartArray[8][1].to_s+"\r"+"\s"+$chartArray[8][0].to_s
+      @labelView9.textColor = UIColor.redColor
+      @labelView9.textAlignment = NSTextAlignmentCenter
+      @labelView9.layer.borderColor = UIColor.blackColor.CGColor
+      @labelView9.layer.borderWidth = 1.0
+
+
+
+      view.addSubview(@labelView)
+      view.addSubview(@labelView2)
+      view.addSubview(@labelView3)
+      view.addSubview(@labelView4)
+      view.addSubview(@labelView5)
+      view.addSubview(@labelView6)
+      view.addSubview(@labelView7)
+      view.addSubview(@labelView8)
+      view.addSubview(@labelView9)
+    end
+
+
 def resultdisplay
     #@result_final = "test"
           #@grid_1 = $chartArray[0][0].to_s
     #@grid_1 = "test"
-    result_algrythem
+    
     @secondview = ResultDisplayController.new
     @secondview.result_final = @result_final
     @secondview.plate_display = $chartArray
