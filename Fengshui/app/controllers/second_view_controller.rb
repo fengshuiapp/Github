@@ -322,18 +322,20 @@ $circularPlate=
       @label_field3.text = "Please Enter the Facing Direction:"
       view.addSubview(@label_field3)
 
-    @input_field = UITextField.alloc.initWithFrame([[180, 125], [90, 20]])
+    @input_field = UITextField.alloc.initWithFrame([[160, 125], [120, 20]])
     @input_field.textColor = UIColor.blackColor
     @input_field.backgroundColor = UIColor.whiteColor
     @input_field.setBorderStyle UITextBorderStyleRoundedRect
     @input_field.placeholder = "Year"
+    @input_field.placeholder = "1864-2044"
     view.addSubview(@input_field)
 
-    @input_field3 = UITextField.alloc.initWithFrame([[105, 125], [70, 20]])
+    @input_field3 = UITextField.alloc.initWithFrame([[105, 125], [50, 20]])
     @input_field3.textColor = UIColor.blackColor
     @input_field3.backgroundColor = UIColor.whiteColor
     @input_field3.setBorderStyle UITextBorderStyleRoundedRect
     @input_field3.placeholder = "Month"
+    @input_field3.placeholder = "1-12"
     view.addSubview(@input_field3) 
 
     @input_field4 = UITextField.alloc.initWithFrame([[50, 125], [50, 20]])
@@ -341,6 +343,7 @@ $circularPlate=
     @input_field4.backgroundColor = UIColor.whiteColor
     @input_field4.setBorderStyle UITextBorderStyleRoundedRect
     @input_field4.placeholder = "Day"
+    @input_field4.placeholder = "1-31"
     view.addSubview(@input_field4)  
 
     @input_field2 = UITextField.alloc.initWithFrame([[50, 175], [100, 20]])
@@ -579,21 +582,21 @@ $circularPlate=
   #puts "Please enter year when the house is completed:"
   converter = LunarSolarConverter.new
   solar = Solar.new
-  if @input_field.text.to_i != 0
+  if @input_field.text.to_i != 0 and  (1864..2044).include?(@input_field.text.to_i)
   solar.solarYear = @input_field.text.to_i
 else
   solar.solarYear = 1888
   @temp=1
   wrong_alert
 end
-if @input_field3.text.to_i !=0
+if @input_field3.text.to_i !=0 and (1..12).include?(@input_field3.text.to_i)
   solar.solarMonth = @input_field3.text.to_i
 else
   solar.solarMonth = 1
   @temp=1
   wrong_alert
 end
-if @input_field4.text.to_i !=0
+if @input_field4.text.to_i !=0 and (1..31).include?(@input_field4.text.to_i)
   solar.solarDay = @input_field4.text.to_i
 else
   solar.solarDay = 1
