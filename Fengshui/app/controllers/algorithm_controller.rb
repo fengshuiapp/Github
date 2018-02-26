@@ -310,7 +310,7 @@ $circularPlate=
       @label_field = UILabel.alloc.initWithFrame([[50,100],[250,20]])
       @label_field.textColor = UIColor.blackColor
       @label_field.backgroundColor = UIColor.clearColor
-      @label_field.text = "Please Enter the Built Date:"
+      @label_field.text = "The Built Date is:"
       view.addSubview(@label_field)
 
       @label_field2 = UILabel.alloc.initWithFrame([[50,200],[250,20]])
@@ -325,30 +325,30 @@ $circularPlate=
       @label_field3.text = "Please Enter the Facing Direction:"
       view.addSubview(@label_field3)
 
-    @input_field = UITextField.alloc.initWithFrame([[160, 125], [120, 20]])
+    @input_field = UILabel.alloc.initWithFrame([[160, 125], [120, 20]])
     @input_field.textColor = UIColor.blackColor
     @input_field.backgroundColor = UIColor.whiteColor
-    @input_field.setBorderStyle UITextBorderStyleRoundedRect
-    @input_field.placeholder = "Year"
-    @input_field.placeholder = "1864-2043"
+    #@input_field.setBorderStyle UITextBorderStyleRoundedRect
+    #@input_field.placeholder = "Year"
+    #@input_field.placeholder = "1864-2043"
     @input_field.text = @input_field_text
     view.addSubview(@input_field)
 
-    @input_field3 = UITextField.alloc.initWithFrame([[105, 125], [50, 20]])
+    @input_field3 = UILabel.alloc.initWithFrame([[105, 125], [50, 20]])
     @input_field3.textColor = UIColor.blackColor
     @input_field3.backgroundColor = UIColor.whiteColor
-    @input_field3.setBorderStyle UITextBorderStyleRoundedRect
-    @input_field3.placeholder = "Month"
-    @input_field3.placeholder = "1-12"
+    #@input_field3.setBorderStyle UITextBorderStyleRoundedRect
+    #@input_field3.placeholder = "Month"
+    #@input_field3.placeholder = "1-12"
     @input_field3.text = @input_field3_text
     view.addSubview(@input_field3) 
 
-    @input_field4 = UITextField.alloc.initWithFrame([[50, 125], [50, 20]])
+    @input_field4 = UILabel.alloc.initWithFrame([[50, 125], [50, 20]])
     @input_field4.textColor = UIColor.blackColor
     @input_field4.backgroundColor = UIColor.whiteColor
-    @input_field4.setBorderStyle UITextBorderStyleRoundedRect
-    @input_field4.placeholder = "Day"
-    @input_field4.placeholder = "1-31"
+    #@input_field4.setBorderStyle UITextBorderStyleRoundedRect
+    #@input_field4.placeholder = "Day"
+    #@input_field4.placeholder = "1-31"
     @input_field4.text = @input_field4_text
     view.addSubview(@input_field4)  
 

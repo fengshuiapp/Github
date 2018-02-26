@@ -7,6 +7,7 @@ class SecondViewController < UIViewController
   end
   
  def loadinput
+      view.backgroundColor = UIColor.underPageBackgroundColor
       @date_picker = UIDatePicker.alloc.init
       @date_picker.datePickerMode = UIDatePickerModeDate
 
@@ -37,11 +38,11 @@ class SecondViewController < UIViewController
       # Add the Bar Button Item to the Navigation Bar
       self.navigationItem.rightBarButtonItem = next_button
 
-      @date_string = NSString.alloc.init
-      
-      @format = NSDateFormatter.alloc.init
-      @format.DateFormat = "yyyy-MM-dd"
-      @date_string = @format.stringFromDate(@date_picker.date)
+      @label_field = UILabel.alloc.initWithFrame([[30,300],[250,20]])
+      @label_field.textColor = UIColor.blackColor
+      @label_field.backgroundColor = UIColor.clearColor
+      @label_field.text = "Please pick the built:"
+      view.addSubview(@label_field)
 
 
  end
@@ -49,7 +50,11 @@ class SecondViewController < UIViewController
 
 
     def algorithm_controller
-
+      @date_string = NSString.alloc.init
+      
+      @format = NSDateFormatter.alloc.init
+      @format.DateFormat = "yyyy-MM-dd"
+      @date_string = @format.stringFromDate(@date_picker.date)
     
       @algorithmview = AlgorithmController.new
 
