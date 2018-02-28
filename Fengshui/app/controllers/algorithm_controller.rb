@@ -4,6 +4,7 @@ class AlgorithmController < UIViewController
     attr_accessor :input_field_text
     attr_accessor :input_field3_text
     attr_accessor :input_field4_text
+    attr_accessor :input_field2_text
 
 #Number
 $earthStar=0
@@ -28,6 +29,7 @@ $backwardMovement=Array[4,0,3,2,7,1,6,5,8]
 
 #九宫格的array
 $chartArray=Array.new(9){Array.new(3)}
+$chartArray_temp =Array.new(9){Array.new(3)}
 
 #fill circle  = 1 --> yin  movement
 #empty circle = 0 --> yang movement
@@ -322,7 +324,7 @@ $circularPlate=
       @label_field3 = UILabel.alloc.initWithFrame([[50,150],[350,20]])
       @label_field3.textColor = UIColor.blackColor
       @label_field3.backgroundColor = UIColor.clearColor
-      @label_field3.text = "Please Enter the Facing Direction:"
+      @label_field3.text = "The Facing Direction is:"
       view.addSubview(@label_field3)
 
     @input_field = UILabel.alloc.initWithFrame([[160, 125], [120, 20]])
@@ -352,11 +354,12 @@ $circularPlate=
     @input_field4.text = @input_field4_text
     view.addSubview(@input_field4)  
 
-    @input_field2 = UITextField.alloc.initWithFrame([[50, 175], [100, 20]])
+    @input_field2 = UILabel.alloc.initWithFrame([[50, 175], [100, 20]])
     @input_field2.textColor = UIColor.blackColor
     @input_field2.backgroundColor = UIColor.whiteColor
-    @input_field2.setBorderStyle UITextBorderStyleRoundedRect
-    @input_field2.placeholder = "0-360"
+    #@input_field2.setBorderStyle UITextBorderStyleRoundedRect
+    #@input_field2.placeholder = "0-360"
+    @input_field2.text = @input_field2_text
     view.addSubview(@input_field2) 
 
      @apply_button = UIButton.buttonWithType(UIButtonTypeRoundedRect)
@@ -441,7 +444,7 @@ $circularPlate=
       if camera_present
         #result_algrythem
         @image_picker.sourceType = UIImagePickerControllerSourceTypeCamera
-        @image_picker.allowsEditing = false
+        @image_picker.allowsEditing = true
         @image_picker.showsCameraControls = true
         presentModalViewController(@image_picker, animated:true)
       else
@@ -497,6 +500,8 @@ $circularPlate=
       #insert the Mountain Star in the 2st element of each small array
 
       typeOfChart
+
+      facing_palace
        
     end
 
@@ -581,9 +586,15 @@ def insertFacing
   
   #puts "Please enter the Facing of the household:"
   #(2..100).include?(5)
-  if (0..360).include?(@input_field2.text.to_i)
+  #if (0..360).include?(@input_field2.text.to_i) and if @input_field2.text.is_a? Numeric
+  begin
+   Integer(@input_field2.text) 
+   if (0..360).include?(@input_field2.text.to_i)
   $facingDegree=@input_field2.text.to_f
 else
+  wrong_alert
+end
+rescue 
   wrong_alert
 end
 
@@ -647,7 +658,7 @@ def insertMountain
     $chartArray[box][2] = $starNum[j]
    j+=1
   end
-  #@result_final = j.to_s
+ $chartArray_temp=$chartArray
 end
 
 def typeOfChart
@@ -733,6 +744,119 @@ def luopanConvertor(degree) #find the direction in Chinese
   end
   
 end
+def facing_palace
+$chartArray=$chartArray_temp
+
+  for i in 0..8
+
+    if ($chartArray[4][1] == $chartArray[i][0])
+      if (i == 0 )
+        $chartArray_temp1 =Array.new(9){Array.new(3)}
+        $chartArray_temp1[0]=$chartArray[3]
+        $chartArray_temp1[1]=$chartArray[0]
+        $chartArray_temp1[2]=$chartArray[1]
+        $chartArray_temp1[3]=$chartArray[6]
+        $chartArray_temp1[5]=$chartArray[2]
+        $chartArray_temp1[6]=$chartArray[7]
+        $chartArray_temp1[7]=$chartArray[8]
+        $chartArray_temp1[8]=$chartArray[5]
+        $chartArray_temp1[4]=$chartArray[4]  
+        $chartArray=$chartArray_temp1    
+      break
+      elsif ( i == 2 )
+        $chartArray_temp1 =Array.new(9){Array.new(3)}
+        $chartArray_temp1[0]=$chartArray[1]
+        $chartArray_temp1[1]=$chartArray[2]
+        $chartArray_temp1[2]=$chartArray[5]
+        $chartArray_temp1[3]=$chartArray[0]
+        $chartArray_temp1[5]=$chartArray[8]
+        $chartArray_temp1[6]=$chartArray[3]
+        $chartArray_temp1[7]=$chartArray[6]
+        $chartArray_temp1[8]=$chartArray[7]
+        $chartArray_temp1[4]=$chartArray[4]   
+        $chartArray=$chartArray_temp1     
+      break
+      
+      elsif(i==3)
+         $chartArray_temp1 =Array.new(9){Array.new(3)}
+        $chartArray_temp1[0]=$chartArray[6]
+        $chartArray_temp1[1]=$chartArray[3]
+        $chartArray_temp1[2]=$chartArray[0]
+        $chartArray_temp1[3]=$chartArray[7]
+        $chartArray_temp1[5]=$chartArray[1]
+        $chartArray_temp1[6]=$chartArray[8]
+        $chartArray_temp1[7]=$chartArray[5]
+        $chartArray_temp1[8]=$chartArray[2]
+        $chartArray_temp1[4]=$chartArray[4]   
+        $chartArray=$chartArray_temp1
+        break
+      
+      elsif(i==5)
+         $chartArray_temp1 =Array.new(9){Array.new(3)}
+        $chartArray_temp1[0]=$chartArray[2]
+        $chartArray_temp1[1]=$chartArray[5]
+        $chartArray_temp1[2]=$chartArray[8]
+        $chartArray_temp1[3]=$chartArray[1]
+        $chartArray_temp1[5]=$chartArray[7]
+        $chartArray_temp1[6]=$chartArray[0]
+        $chartArray_temp1[7]=$chartArray[3]
+        $chartArray_temp1[8]=$chartArray[6]
+        $chartArray_temp1[4]=$chartArray[4]   
+        $chartArray=$chartArray_temp1
+        break  
+      
+      elsif(i==6)
+         $chartArray_temp1 =Array.new(9){Array.new(3)}
+        $chartArray_temp1[0]=$chartArray[7]
+        $chartArray_temp1[1]=$chartArray[6]
+        $chartArray_temp1[2]=$chartArray[3]
+        $chartArray_temp1[3]=$chartArray[8]
+        $chartArray_temp1[5]=$chartArray[0]
+        $chartArray_temp1[6]=$chartArray[5]
+        $chartArray_temp1[7]=$chartArray[2]
+        $chartArray_temp1[8]=$chartArray[1]
+        $chartArray_temp1[4]=$chartArray[4]   
+        $chartArray=$chartArray_temp1
+        break  
+      
+      elsif(i==7)
+         $chartArray_temp1 =Array.new(9){Array.new(3)}
+        $chartArray_temp1[0]=$chartArray[8]
+        $chartArray_temp1[1]=$chartArray[7]
+        $chartArray_temp1[2]=$chartArray[6]
+        $chartArray_temp1[3]=$chartArray[5]
+        $chartArray_temp1[5]=$chartArray[3]
+        $chartArray_temp1[6]=$chartArray[2]
+        $chartArray_temp1[7]=$chartArray[1]
+        $chartArray_temp1[8]=$chartArray[0]
+        $chartArray_temp1[4]=$chartArray[4]   
+        $chartArray=$chartArray_temp1
+        break  
+      
+      elsif(i==8)
+         $chartArray_temp1 =Array.new(9){Array.new(3)}
+        $chartArray_temp1[0]=$chartArray[5]
+        $chartArray_temp1[1]=$chartArray[8]
+        $chartArray_temp1[2]=$chartArray[7]
+        $chartArray_temp1[3]=$chartArray[2]
+        $chartArray_temp1[5]=$chartArray[6]
+        $chartArray_temp1[6]=$chartArray[1]
+        $chartArray_temp1[7]=$chartArray[0]
+        $chartArray_temp1[8]=$chartArray[3]
+        $chartArray_temp1[4]=$chartArray[4]   
+        $chartArray=$chartArray_temp1
+        break  
+      end
+
+break
+    end
+  end
+
+
+
+
+
+  end
 
  def wrong_alert
       @result_final = "N.A."

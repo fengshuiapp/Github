@@ -44,6 +44,19 @@ class SecondViewController < UIViewController
       @label_field.text = "Please pick the built:"
       view.addSubview(@label_field)
 
+       @label_field3 = UILabel.alloc.initWithFrame([[30,350],[350,20]])
+      @label_field3.textColor = UIColor.blackColor
+      @label_field3.backgroundColor = UIColor.clearColor
+      @label_field3.text = "Please Enter the Facing Direction:"
+      view.addSubview(@label_field3)
+
+      @input_field = UITextField.alloc.initWithFrame([[30, 400], [100, 20]])
+    @input_field.textColor = UIColor.blackColor
+    @input_field.backgroundColor = UIColor.whiteColor
+    @input_field.setBorderStyle UITextBorderStyleRoundedRect
+    @input_field.placeholder = "0-360"
+    view.addSubview(@input_field) 
+
 
  end
 
@@ -55,12 +68,14 @@ class SecondViewController < UIViewController
       @format = NSDateFormatter.alloc.init
       @format.DateFormat = "yyyy-MM-dd"
       @date_string = @format.stringFromDate(@date_picker.date)
+
     
       @algorithmview = AlgorithmController.new
 
       @algorithmview.input_field_text = @date_string.substringToIndex(4)
       @algorithmview.input_field3_text = @date_string.substringWithRange(NSMakeRange(5,2))
       @algorithmview.input_field4_text =  @date_string.substringWithRange(NSMakeRange(8,2))
+      @algorithmview.input_field2_text = @input_field.text
       navigationController.pushViewController(@algorithmview,animated: true)
     end
 
