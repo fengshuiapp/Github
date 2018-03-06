@@ -68,10 +68,10 @@ class UserInputController < UIViewController
       @format = NSDateFormatter.alloc.init
       @format.DateFormat = "yyyy-MM-dd"
       @date_string = @format.stringFromDate(@date_picker.date)
-      @algorithmview = AlgorithmController.news
+      @algorithmview = AlgorithmController.new
       @algorithmview.input_field_text = @date_string.substringToIndex(4)
       @algorithmview.input_field3_text = @date_string.substringWithRange(NSMakeRange(5,2))
-      @algorithmview.input_field4_text =  @date_string.substringWithRange(NSMakeRange(8,2))
+      @algorithmview.input_field4_text = @date_string.substringWithRange(NSMakeRange(8,2))
       @algorithmview.input_field2_text = @input_field.text
       navigationController.pushViewController(@algorithmview,animated: true)
 
