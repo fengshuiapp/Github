@@ -483,7 +483,7 @@ class AlgorithmController < UIViewController
      
         
 
-      def result_algrythem
+      def result_algorithm
 
           yearToCycle
           #get the global variable $earthStar
@@ -672,7 +672,7 @@ class AlgorithmController < UIViewController
                   @result_final ="Ascending Mountain Condition. \rThe fortunes of such a house will be enhanced if there is a mountain at the back."
             elsif ($mountainMovement==0 and $facingMovement==0)
                   #Forward mountain and forward facing
-                  @result_final = "Descending Water Condition.\rThe fortunes of this house will be enhanced if water lies in front and mountains are at the back."
+                  @result_final = "Ascending Mountain and Descending Wawter Condition.\rThe fortunes of this house will be enhanced if water lies in front and mountains are at the back."
             elsif ($mountainMovement==1 and $facingMovement==1)
                   #Backward mountain and backward facing
                   @result_final = "Reverse Mountain and Reverse Water Condition. \rA house with this combination will have good fortune regardless of its position relative to mountains and water."
@@ -862,7 +862,7 @@ class AlgorithmController < UIViewController
 
       def apply_algorithm
 
-          result_algrythem
+          result_algorithm
           @labelView = UILabel.alloc.init
           @labelView.frame = [[40,300],[100,100]]
           @labelView.numberOfLines = 2
