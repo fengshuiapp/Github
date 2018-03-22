@@ -1,40 +1,24 @@
 class MainView < UIView
   #attr_accessor :button
-  attr_accessor :todo_button
+  
+  attr_accessor :intro_label
+
   def init
-    super
+      super
 
-    self.backgroundColor = UIColor.whiteColor
-    #@button = UIButton.new
-    #@button.setTitle('Button Title',forState: UIControlStateNormal)
-    #@button.setTitle ('pressed', forState: UIControlStateHighlighted)
-    #@button.setTitleColor (UIColor.redColor, forState: UIControlStateNormal)
-
-
-    #@button.frame = [[20,200],[250,30]]
-    #addSubview(@button)
-
-    @todo_button = UIButton.buttonWithType(UIButtonTypeSystem)
-    @todo_button.setTitle('Start->',forState: UIControlStateNormal)
-    #@todo_button.setTitle ('pressed', forState: UIControlStateHighlighted)
-    @todo_button.setTitleColor (UIColor.blueColor, forState: UIControlStateNormal)
-
-
-    @todo_button.frame = [[250,600],[100,30]]
-    addSubview(@todo_button)
-
-
-    #label = UILabel.new
-    #label.text = 'Text Label'
-    #label.textColor = UIColor.blueColor
-    #label.frame = [[20,150],[200,30]]
-    #addSubview(label)
-
-    #field = UITextField.new
-    #field.text = 'This'
-    #field.placeholder = 'Text inside'
-    #field.backgroundColor = UIColor.yellowColor
-    #field.frame = [[20,250],[250,30]]
-    #addSubview(field)
-  end
+      @intro_label= UILabel.alloc.initWithFrame([[50,250],[300,200]])
+      @intro_label.numberOfLines = 20
+      @intro_label.highlighted = true
+      @intro_label.textColor = UIColor.blackColor
+      @intro_label.backgroundColor = UIColor.clearColor
+      @intro_label.font = UIFont.fontWithName("HelveticaNeue-
+      CondensedBold",size:20)
+      @intro_label.shadowColor = UIColor.blackColor
+      @intro_label.text = "     Welcome to Fengshui APP!
+      1. Please pick up the built date in western calender and enter the facing direction in integer value at next page.
+      2. Please upload your floor plan and apply the Nine Palace grid on top of it by pressing apply button.
+      3. The Fengshui of each room will be displayed to you at the last Page."
+      addSubview(@intro_label)
+end     
+  
 end
